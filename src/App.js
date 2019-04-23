@@ -1,19 +1,15 @@
 import React, { Component } from "react";
 import "./App.css";
-import Navigation from "./components/Navigation";
-import Main from "./components/Main";
-import Side from "./components/Side";
+import Navigation from "./components/Navigation.jsx";
+import Main from "./components/Main.jsx";
+import Side from "./components/Side.jsx";
+import { getTopics } from "./components/api";
+
+import _ from "lodash";
 
 class App extends Component {
   state = {
-    topics: [
-      { slug: "coding", description: "Code is love, code is life" },
-      { slug: "football", description: "FOOTIE!" },
-      {
-        slug: "cooking",
-        description: "Hey good looking, what you got cooking?"
-      }
-    ]
+    topics: []
   };
 
   render() {
@@ -26,6 +22,23 @@ class App extends Component {
       </div>
     );
   }
+
+  componentDidMount() {
+    this.fetchTopics();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const topicsUpdated = !_.isEqual(prevState.topics, this.state.topics);
+    if (topicsUpdated) this.fetchTopics();
+  }
+
+  fetchTopics = () => {
+    getTopics().then(topics => {
+      this.setState({
+        topics
+      });
+    });
+  };
 }
 
 export default App;
