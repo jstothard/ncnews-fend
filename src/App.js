@@ -1,11 +1,11 @@
+import _ from "lodash";
 import React, { Component } from "react";
 import "./App.css";
 import Navigation from "./components/Navigation.jsx";
-import Main from "./components/Main.jsx";
+import Articles from "./components/Articles.jsx";
 import Side from "./components/Side.jsx";
 import { getTopics } from "./components/api";
-
-import _ from "lodash";
+import { Router } from "@reach/router";
 
 class App extends Component {
   state = {
@@ -17,7 +17,9 @@ class App extends Component {
     return (
       <div className="App">
         <Navigation topics={topics} />
-        <Main />
+        <Router className="Main">
+          <Articles path="/" />
+        </Router>
         <Side />
       </div>
     );
