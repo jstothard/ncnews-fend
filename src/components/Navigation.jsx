@@ -9,7 +9,7 @@ const Navigation = props => {
   const { topics } = props;
   return (
     <div className="Navbar">
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand onClick={() => navigate("/")}>
           NorthCoders News
         </Navbar.Brand>

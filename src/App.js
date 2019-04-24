@@ -6,6 +6,7 @@ import Articles from "./components/Articles.jsx";
 import Side from "./components/Side.jsx";
 import { getTopics } from "./components/api";
 import { Router } from "@reach/router";
+import { Container, Row, Col } from "react-bootstrap";
 
 class App extends Component {
   state = {
@@ -17,11 +18,21 @@ class App extends Component {
     return (
       <div className="App">
         <Navigation topics={topics} />
-        <Router className="Main">
-          <Articles path="/" />
-          <Articles path="topics/:topic" />
-        </Router>
-        <Side />
+        <div className="Body">
+          <Container>
+            <Row>
+              <Col xs={12} md={12} lg={8}>
+                <Router className="Main">
+                  <Articles path="/" />
+                  <Articles path="topics/:topic" />
+                </Router>
+              </Col>
+              <Col xs={6} md={6} lg={4}>
+                <Side />
+              </Col>
+            </Row>
+          </Container>
+        </div>
       </div>
     );
   }
