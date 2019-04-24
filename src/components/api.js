@@ -9,3 +9,12 @@ export const getTopics = async () => {
 
   return topics;
 };
+
+export const getArticles = async topic => {
+  const {
+    data: { articles }
+  } = await axios.get(
+    `${BASE_URL + (topic ? `/articles/?topic=${topic}` : "/articles")}`
+  );
+  return articles;
+};

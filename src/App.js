@@ -19,6 +19,7 @@ class App extends Component {
         <Navigation topics={topics} />
         <Router className="Main">
           <Articles path="/" />
+          <Articles path="topics/:topic" />
         </Router>
         <Side />
       </div>
