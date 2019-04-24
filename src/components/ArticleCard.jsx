@@ -22,11 +22,23 @@ const ArticleCard = props => {
   return (
     <Card>
       <Card.Header>
-        Topic:
-        <Link to={`/topics/${topic}`}>
-          {topic[0].toUpperCase() + topic.slice(1)}
-        </Link>
-        {" Posted by " + author}
+        <Container>
+          <Row>
+            <Col>
+              <Card.Text>
+                Topic:
+                <Link to={`/topics/${topic}`}>
+                  {topic[0].toUpperCase() + topic.slice(1)}
+                </Link>
+              </Card.Text>
+            </Col>
+            <Col>
+              <Card.Text className="font-weight-light text-right">
+                {" Posted by " + author}
+              </Card.Text>
+            </Col>
+          </Row>
+        </Container>
       </Card.Header>
       <Card.Body>
         <Container>
@@ -35,15 +47,25 @@ const ArticleCard = props => {
               <Votes votes={votes} id={article_id} />
             </Col>
             <Col xs={{ span: true }}>
-              <Card.Title>{title}</Card.Title>
+              <Link to={`/articles/${article_id}`}>
+                <Card.Title>{title}</Card.Title>
+              </Link>
               <Card.Text>{body}</Card.Text>
-              <Card.Text>Comments: {comment_count}</Card.Text>
             </Col>
           </Row>
         </Container>
       </Card.Body>
       <Card.Footer className="text-muted">
-        {days + " " + (days === 1 ? "day ago" : "days ago")}
+        <Container>
+          <Row>
+            <Col>{days + " " + (days === 1 ? "day ago" : "days ago")}</Col>
+            <Col>
+              <Card.Text className="text-right">
+                Comments: {comment_count}
+              </Card.Text>
+            </Col>
+          </Row>
+        </Container>
       </Card.Footer>
     </Card>
   );

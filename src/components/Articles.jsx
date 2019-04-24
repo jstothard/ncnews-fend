@@ -1,3 +1,4 @@
+import "./css/Articles.css";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { CardColumns } from "react-bootstrap";
