@@ -14,7 +14,8 @@ const ArticleCard = props => {
       created_at,
       votes,
       comment_count,
-      article_id
+      article_id,
+      body
     }
   } = props;
   const days = daysBetween(new Date(), new Date(created_at));
@@ -30,11 +31,12 @@ const ArticleCard = props => {
       <Card.Body>
         <Container>
           <Row>
-            <Col>
+            <Col xs={{ span: false }}>
               <Votes votes={votes} id={article_id} />
             </Col>
-            <Col>
+            <Col xs={{ span: true }}>
               <Card.Title>{title}</Card.Title>
+              <Card.Text>{body}</Card.Text>
               <Card.Text>Comments: {comment_count}</Card.Text>
             </Col>
           </Row>

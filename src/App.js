@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import "./App.css";
 import Navigation from "./components/Navigation.jsx";
 import Articles from "./components/Articles.jsx";
+import Article from "./components/Article.jsx";
 import Side from "./components/Side.jsx";
 import { getTopics } from "./components/api";
 import { Router } from "@reach/router";
@@ -34,6 +35,7 @@ class App extends Component {
                 <Router className="Main">
                   <Articles path="/" />
                   <Articles path="topics/:topic" />
+                  <Article path="articles/:article_id" />
                 </Router>
               </Col>
               <Col xs={6} md={6} lg={4}>
