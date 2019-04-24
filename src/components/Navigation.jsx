@@ -4,9 +4,16 @@ import React from "react";
 import { Navbar, NavDropdown, Nav } from "react-bootstrap";
 import { navigate } from "@reach/router";
 import PropTypes from "prop-types";
+import Auth from "./Auth";
+import LogOut from "./LogOut";
 
 const Navigation = props => {
-  const { topics } = props;
+  const {
+    topics,
+    updateUser,
+    loggedIn,
+    user: { username }
+  } = props;
   return (
     <div className="Navbar">
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
@@ -27,9 +34,11 @@ const Navigation = props => {
               ))}
             </NavDropdown>
           </Nav>
-          <Nav>
-            <Nav.Link onClick={() => navigate("/login")}>Login</Nav.Link>
-          </Nav>
+          {loggedIn ? (
+            <LogOut username={username} updateUser={updateUser} />
+          ) : (
+            <Auth updateUser={updateUser} />
+          )}
         </Navbar.Collapse>
       </Navbar>
     </div>

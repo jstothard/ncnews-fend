@@ -1,0 +1,19 @@
+.wrong-entry {
+  animation: shake 0.3s;
+  border: 0.3em solid;
+}
+
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0px);
+  }
+  20%,
+  60% {
+    transform: translateX(15px);
+  }
+  40%,
+  80% {
+    transform: translateX(-15px);
+  }
+}

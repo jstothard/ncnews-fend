@@ -25,3 +25,10 @@ export const vote = async (id, inc_votes) => {
   } = await axios.patch(`${BASE_URL}/articles/${id}`, { inc_votes });
   return article;
 };
+
+export const getUser = async username => {
+  const {
+    data: { user }
+  } = await axios.get(`${BASE_URL}/users/${username}`);
+  return user;
+};

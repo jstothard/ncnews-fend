@@ -7,17 +7,26 @@ import Side from "./components/Side.jsx";
 import { getTopics } from "./components/api";
 import { Router } from "@reach/router";
 import { Container, Row, Col } from "react-bootstrap";
+import { isEmpty } from "./components/utils";
 
 class App extends Component {
   state = {
-    topics: []
+    topics: [],
+    user: {}
   };
 
   render() {
-    const { topics } = this.state;
+    const { topics, user } = this.state;
+    const loggedIn = !isEmpty(user);
+
     return (
       <div className="App">
-        <Navigation topics={topics} />
+        <Navigation
+          topics={topics}
+          updateUser={this.updateUser}
+          loggedIn={loggedIn}
+          user={user}
+        />
         <div className="Body">
           <Container>
             <Row>
@@ -52,6 +61,10 @@ class App extends Component {
         topics
       });
     });
+  };
+
+  updateUser = user => {
+    this.setState({ user });
   };
 }
 
