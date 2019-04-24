@@ -1,8 +1,9 @@
 import React from "react";
 import { daysBetween } from "./utils";
-import { Card } from "react-bootstrap";
+import { Card, Container, Row, Col } from "react-bootstrap";
 import { Link } from "@reach/router";
 import PropTypes from "prop-types";
+import Votes from "./Votes";
 
 const ArticleCard = props => {
   const {
@@ -27,9 +28,17 @@ const ArticleCard = props => {
         {" Posted by " + author}
       </Card.Header>
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>Votes: {votes}</Card.Text>
-        <Card.Text>Comments: {comment_count}</Card.Text>
+        <Container>
+          <Row>
+            <Col>
+              <Votes votes={votes} id={article_id} />
+            </Col>
+            <Col>
+              <Card.Title>{title}</Card.Title>
+              <Card.Text>Comments: {comment_count}</Card.Text>
+            </Col>
+          </Row>
+        </Container>
       </Card.Body>
       <Card.Footer className="text-muted">
         {days + " " + (days === 1 ? "day ago" : "days ago")}
