@@ -19,6 +19,13 @@ export const getArticles = async topic => {
   return articles;
 };
 
+export const getComments = async article_id => {
+  const {
+    data: { comments }
+  } = await axios.get(`${BASE_URL}/articles/${article_id}/comments`);
+  return comments;
+};
+
 export const vote = async (id, inc_votes, content) => {
   const {
     data: { article }

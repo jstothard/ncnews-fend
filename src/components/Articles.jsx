@@ -12,8 +12,12 @@ class Articles extends Component {
   };
   render() {
     const { articles } = this.state;
+    const { topic } = this.props;
     return (
       <div>
+        {topic ? (
+          <p className="display-4">{topic[0].toUpperCase() + topic.slice(1)}</p>
+        ) : null}
         <CardColumns>
           {articles.map(article => (
             <ArticleCard article={article} key={article.article_id} />

@@ -20,7 +20,8 @@ class Article extends Component {
           </Spinner>
         ) : (
           <div>
-            <ArticleCard article={article} /> <Comments />
+            <ArticleCard article={article} />{" "}
+            <Comments article_id={article.article_id} />
           </div>
         )}
       </div>

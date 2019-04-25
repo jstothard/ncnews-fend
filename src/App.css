@@ -1,24 +1,16 @@
 .Navbar {
   grid-area: navbar;
-  border: 5px solid rgba(255, 0, 0, 1);
-  background-color: rgba(255, 0, 0, 0.3);
 }
 
 .Body {
   grid-area: main;
-  border: 5px solid rgba(255, 0, 255, 1);
-  background-color: rgba(255, 0, 255, 0.3);
   margin-top: 0.5em;
 }
 
 .Main {
   grid-area: main;
-  border: 5px solid rgba(0, 255, 0, 1);
-  background-color: rgba(0, 255, 0, 0.3);
 }
 
 .Side {
   grid-area: side;
-  border: 5px solid rgba(0, 0, 255, 1);
-  background-color: rgba(0, 0, 255, 0.3);
 }
