@@ -58,3 +58,10 @@ export const getArticle = async article_id => {
   } = await axios.get(`${BASE_URL}/articles/${article_id}`);
   return article;
 };
+
+export const deleteComment = async comment_id => {
+  const {
+    data: { comment }
+  } = await axios.delete(`${BASE_URL}/comments/${comment_id}`);
+  return comment;
+};

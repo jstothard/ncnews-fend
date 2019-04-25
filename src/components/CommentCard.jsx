@@ -7,7 +7,8 @@ import Votes from "./Votes";
 const CommentCard = props => {
   const {
     comment: { author, created_at, votes, comment_id, body },
-    user
+    user,
+    removeComment
   } = props;
   const username = user ? user.username : null;
   const days = daysBetween(new Date(), new Date(created_at));
@@ -34,9 +35,14 @@ const CommentCard = props => {
             <Row>
               <Col xs={{ span: false }}>
                 {username === author ? (
-                  <Button variant="danger" size="sm">
+                  <Button
+                    variant="danger"
+                    size="sm"
+                    onClick={removeComment}
+                    value={comment_id}
+                  >
                     <span
-                      class="glyphicon glyphicon-remove"
+                      className="glyphicon glyphicon-remove"
                       aria-hidden="true"
                     />
                   </Button>

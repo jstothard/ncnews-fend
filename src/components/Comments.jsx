@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import CommentCard from "./CommentCard";
 import { CardColumns } from "react-bootstrap";
-import { getComments } from "./api";
+import { getComments, deleteComment } from "./api";
 
 class Comments extends Component {
   state = {
@@ -20,6 +20,7 @@ class Comments extends Component {
               key={comment.comment_id}
               comment={comment}
               user={user}
+              removeComment={this.removeComment}
             />
           ))}
         </CardColumns>
@@ -29,6 +30,10 @@ class Comments extends Component {
   componentDidMount() {
     this.fetchComments();
   }
+
+  removeComment = ({ target: { value } }) => {
+    deleteComment(value).then();
+  };
 
   fetchComments = () => {
     const { article_id } = this.props;
