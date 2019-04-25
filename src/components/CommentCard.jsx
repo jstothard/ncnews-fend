@@ -19,7 +19,7 @@ const CommentCard = props => {
               </Col>
               <Col>
                 <Card.Text className="font-weight-light text-right">
-                  {days + " " + (days === 1 ? "day ago" : "days ago")}
+                  {days}
                 </Card.Text>
               </Col>
             </Row>

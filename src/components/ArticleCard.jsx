@@ -58,7 +58,7 @@ const ArticleCard = props => {
       <Card.Footer className="text-muted">
         <Container>
           <Row>
-            <Col>{days + " " + (days === 1 ? "day ago" : "days ago")}</Col>
+            <Col>{days}</Col>
             <Col>
               <Card.Text className="text-right">
                 Comments: {comment_count}
