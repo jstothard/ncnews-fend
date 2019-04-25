@@ -34,13 +34,13 @@ class Votes extends Component {
     );
   }
   updateVote = e => {
-    const { id } = this.props;
+    const { id, content } = this.props;
     const { voteChange } = this.state;
     const diff = e - voteChange;
     this.setState({
       voteChange: e
     });
-    vote(id, diff).catch(() =>
+    vote(id, diff, content).catch(() =>
       this.setState({
         voteChange
       })

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import ArticleCard from "./ArticleCard";
 import { getArticle } from "./api";
 import { Spinner } from "react-bootstrap";
+import Comments from "./Comments";
 
 class Article extends Component {
   state = {
@@ -18,7 +19,9 @@ class Article extends Component {
             <span className="sr-only">Loading...</span>
           </Spinner>
         ) : (
-          <ArticleCard article={article} />
+          <div>
+            <ArticleCard article={article} /> <Comments />
+          </div>
         )}
       </div>
     );
@@ -31,7 +34,6 @@ class Article extends Component {
   fetchArticle = () => {
     const { article_id } = this.props;
     getArticle(article_id).then(article => {
-      console.log(article);
       this.setState({ article, isLoading: false });
     });
   };

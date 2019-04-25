@@ -19,10 +19,10 @@ export const getArticles = async topic => {
   return articles;
 };
 
-export const vote = async (id, inc_votes) => {
+export const vote = async (id, inc_votes, content) => {
   const {
     data: { article }
-  } = await axios.patch(`${BASE_URL}/articles/${id}`, { inc_votes });
+  } = await axios.patch(`${BASE_URL}/${content}/${id}`, { inc_votes });
   return article;
 };
 

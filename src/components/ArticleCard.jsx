@@ -44,10 +44,10 @@ const ArticleCard = props => {
         <Container>
           <Row>
             <Col xs={{ span: false }}>
-              <Votes votes={votes} id={article_id} />
+              <Votes votes={votes} id={article_id} content="articles" />
             </Col>
             <Col xs={{ span: true }}>
-              <Link to={`/articles/${article_id}`}>
+              <Link className="text-dark" to={`/articles/${article_id}`}>
                 <Card.Title>{title}</Card.Title>
               </Link>
               <Card.Text>{body}</Card.Text>
