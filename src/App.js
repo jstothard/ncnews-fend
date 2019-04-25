@@ -10,6 +10,7 @@ import { Router } from "@reach/router";
 import { Container, Row, Col } from "react-bootstrap";
 import { isEmpty } from "./components/utils";
 import SortBar from "./components/SortBar";
+import PostComment from "./components/PostComment";
 
 class App extends Component {
   state = {
@@ -50,7 +51,14 @@ class App extends Component {
                 </Router>
               </Col>
               <Col xs={6} md={6} lg={4}>
-                <Side />
+                <Router>
+                  <PostComment
+                    path="articles/:article_id"
+                    user={user}
+                    topics={topics}
+                  />
+                  <Side default />
+                </Router>
               </Col>
             </Row>
           </Container>
