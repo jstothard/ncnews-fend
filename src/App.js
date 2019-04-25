@@ -52,11 +52,7 @@ class App extends Component {
               </Col>
               <Col xs={6} md={6} lg={4}>
                 <Router>
-                  <PostComment
-                    path="articles/:article_id"
-                    user={user}
-                    topics={topics}
-                  />
+                  <PostComment path="articles/:article_id" user={user} />
                   <Side default />
                 </Router>
               </Col>

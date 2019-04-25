@@ -29,6 +29,16 @@ export const getComments = async article_id => {
   return comments;
 };
 
+export const postComment = async (article_id, { username }, body) => {
+  const {
+    data: { comment }
+  } = await axios.post(`${BASE_URL}/articles/${article_id}/comments`, {
+    username,
+    body
+  });
+  return comment;
+};
+
 export const vote = async (id, inc_votes, content) => {
   const {
     data: { article }
