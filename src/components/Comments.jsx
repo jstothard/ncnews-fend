@@ -32,7 +32,13 @@ class Comments extends Component {
   }
 
   removeComment = ({ target: { value } }) => {
-    deleteComment(value).then();
+    const { comments } = this.state;
+    deleteComment(value).then(() => {
+      // this.setState({
+      //   comments: comments.filter(comment => comment.comment_id !== value)
+      // });
+      this.fetchComments();
+    });
   };
 
   fetchComments = () => {
