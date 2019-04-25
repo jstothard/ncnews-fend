@@ -45,9 +45,9 @@ class App extends Component {
             <Row>
               <Col xs={12} md={12} lg={8}>
                 <Router className="Main">
-                  <Articles path="/" sort={sort} />
-                  <Articles path="topics/:topic" sort={sort} />
-                  <Article path="articles/:article_id" />
+                  <Articles path="/" sort={sort} user={user} />
+                  <Articles path="topics/:topic" sort={sort} user={user} />
+                  <Article path="articles/:article_id" user={user} />
                 </Router>
               </Col>
               <Col xs={6} md={6} lg={4}>

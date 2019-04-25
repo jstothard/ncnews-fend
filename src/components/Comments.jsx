@@ -10,12 +10,17 @@ class Comments extends Component {
   };
   render() {
     const { comments } = this.state;
+    const { user } = this.props;
     return (
       <div>
         <p className="font-weight-bold">Comments</p>
         <CardColumns>
           {comments.map(comment => (
-            <CommentCard key={comment.comment_id} comment={comment} />
+            <CommentCard
+              key={comment.comment_id}
+              comment={comment}
+              user={user}
+            />
           ))}
         </CardColumns>
       </div>

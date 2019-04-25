@@ -16,9 +16,11 @@ const ArticleCard = props => {
       comment_count,
       article_id,
       body
-    }
+    },
+    user
   } = props;
   const days = daysBetween(new Date(), new Date(created_at));
+  const username = user ? user.username : null;
   return (
     <Card>
       <Card.Header>
@@ -44,7 +46,9 @@ const ArticleCard = props => {
         <Container>
           <Row>
             <Col xs={{ span: false }}>
-              <Votes votes={votes} id={article_id} content="articles" />
+              {username ? (
+                <Votes votes={votes} id={article_id} content="articles" />
+              ) : null}
             </Col>
             <Col xs={{ span: true }}>
               <Link className="text-dark" to={`/articles/${article_id}`}>

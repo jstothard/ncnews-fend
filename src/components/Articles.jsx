@@ -12,7 +12,7 @@ class Articles extends Component {
   };
   render() {
     const { articles } = this.state;
-    const { topic } = this.props;
+    const { topic, user } = this.props;
     return (
       <div>
         {topic ? (
@@ -20,7 +20,11 @@ class Articles extends Component {
         ) : null}
         <CardColumns>
           {articles.map(article => (
-            <ArticleCard article={article} key={article.article_id} />
+            <ArticleCard
+              article={article}
+              key={article.article_id}
+              user={user}
+            />
           ))}
         </CardColumns>
       </div>

@@ -12,7 +12,6 @@ export const getTopics = async () => {
 
 export const getArticles = async (topic, sort) => {
   const sort_by = Object.keys(sort)[0];
-  console.log(sort_by);
   const order = sort[sort_by];
   const {
     data: { articles }

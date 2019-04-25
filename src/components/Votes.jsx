@@ -21,13 +21,13 @@ class Votes extends Component {
           value={voteChange}
         >
           <ToggleButton type="radio" value={1} variant="secondary">
-            +
+            <span class="glyphicon glyphicon-plus" aria-hidden="true" />
           </ToggleButton>
           <ToggleButton type="radio" value={0} variant="secondary">
             {votes + voteChange}
           </ToggleButton>
           <ToggleButton type="radio" value={-1} variant="secondary">
-            -
+            <span class="glyphicon glyphicon-minus" aria-hidden="true" />
           </ToggleButton>
         </ToggleButtonGroup>
       </div>

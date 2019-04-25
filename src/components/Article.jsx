@@ -12,6 +12,7 @@ class Article extends Component {
   };
   render() {
     const { article, isLoading } = this.state;
+    const { user } = this.props;
     return (
       <div>
         {isLoading ? (
@@ -20,8 +21,8 @@ class Article extends Component {
           </Spinner>
         ) : (
           <div>
-            <ArticleCard article={article} />{" "}
-            <Comments article_id={article.article_id} />
+            <ArticleCard article={article} user={user} />
+            <Comments article_id={article.article_id} user={user} />
           </div>
         )}
       </div>
