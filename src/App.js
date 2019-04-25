@@ -9,32 +9,43 @@ import { getTopics } from "./components/api";
 import { Router } from "@reach/router";
 import { Container, Row, Col } from "react-bootstrap";
 import { isEmpty } from "./components/utils";
+import SortBar from "./components/SortBar";
 
 class App extends Component {
   state = {
     topics: [],
-    user: {}
+    user: {},
+    sort: { created_at: "desc" }
   };
 
   render() {
-    const { topics, user } = this.state;
+    const { topics, user, sort } = this.state;
     const loggedIn = !isEmpty(user);
-
     return (
       <div className="App">
-        <Navigation
-          topics={topics}
-          updateUser={this.updateUser}
-          loggedIn={loggedIn}
-          user={user}
-        />
-        <div className="Body">
-          <Container>
+        <div>
+          <Navigation
+            topics={topics}
+            updateUser={this.updateUser}
+            loggedIn={loggedIn}
+            user={user}
+          />
+        </div>
+        <div className="Page">
+          <Router>
+            <SortBar
+              path="/topics/*"
+              updateSort={this.updateSort}
+              sort={sort}
+            />
+            <SortBar path="/" updateSort={this.updateSort} sort={sort} />
+          </Router>
+          <Container className="Body">
             <Row>
               <Col xs={12} md={12} lg={8}>
                 <Router className="Main">
-                  <Articles path="/" />
-                  <Articles path="topics/:topic" />
+                  <Articles path="/" sort={sort} />
+                  <Articles path="topics/:topic" sort={sort} />
                   <Article path="articles/:article_id" />
                 </Router>
               </Col>
@@ -48,12 +59,21 @@ class App extends Component {
     );
   }
 
+  updateSort = e => {
+    const order = { asc: "desc", desc: "asc" };
+    const term = e.target.value;
+    if (this.state.sort[term] !== undefined)
+      this.setState({ sort: { [term]: order[this.state.sort[term]] } });
+    else this.setState({ sort: { [term]: "desc" } });
+  };
+
   componentDidMount() {
     this.fetchTopics();
   }
 
   componentDidUpdate(prevProps, prevState) {
     const topicsUpdated = !_.isEqual(prevState.topics, this.state.topics);
+    const sortUpdated = _.isEqual(prevState.sort, this.state.sort);
     if (topicsUpdated) this.fetchTopics();
   }
 

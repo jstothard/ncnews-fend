@@ -16,7 +16,15 @@ const Navigation = props => {
   } = props;
   return (
     <div className="Navbar">
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg">
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Collapse id="responsive-navbar-nav">
+          <Nav className="mr-auto">
+            <NavDropdown title="Topics" id="collasible-nav-dropdown" />
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" fixed="top">
         <Navbar.Brand onClick={() => navigate("/")}>
           NorthCoders News
         </Navbar.Brand>

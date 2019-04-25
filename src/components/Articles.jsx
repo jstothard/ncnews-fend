@@ -27,19 +27,21 @@ class Articles extends Component {
     );
   }
   componentDidMount() {
-    const { topic } = this.props;
-    this.fetchArticles(topic);
+    const { topic, sort } = this.props;
+    this.fetchArticles(topic, sort);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { topic } = this.props;
+    const { topic, sort } = this.props;
     const articlesUpdated = !_.isEqual(prevState.articles, this.state.articles);
+    const sortUpdated = prevProps.sort !== sort;
     const topicUpdated = prevProps.topic !== topic;
-    if (topicUpdated || articlesUpdated) this.fetchArticles(topic);
+    if (topicUpdated || articlesUpdated || sortUpdated)
+      this.fetchArticles(topic, sort);
   }
 
-  fetchArticles = topic => {
-    getArticles(topic).then(articles => {
+  fetchArticles = (topic, sort) => {
+    getArticles(topic, sort).then(articles => {
       return this.setState({
         articles
       });

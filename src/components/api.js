@@ -10,12 +10,15 @@ export const getTopics = async () => {
   return topics;
 };
 
-export const getArticles = async topic => {
+export const getArticles = async (topic, sort) => {
+  const sort_by = Object.keys(sort)[0];
+  console.log(sort_by);
+  const order = sort[sort_by];
   const {
     data: { articles }
-  } = await axios.get(
-    `${BASE_URL + (topic ? `/articles/?topic=${topic}` : "/articles")}`
-  );
+  } = await axios.get(`${BASE_URL}/articles/`, {
+    params: { topic, sort_by, order }
+  });
   return articles;
 };
 

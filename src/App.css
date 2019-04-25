@@ -1,16 +1,3 @@
-.Navbar {
-  grid-area: navbar;
-}
-
 .Body {
-  grid-area: main;
   margin-top: 0.5em;
-}
-
-.Main {
-  grid-area: main;
-}
-
-.Side {
-  grid-area: side;
 }
