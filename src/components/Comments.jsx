@@ -31,13 +31,16 @@ class Comments extends Component {
     this.fetchComments();
   }
 
-  removeComment = ({ target: { value } }) => {
+  removeComment = ({ target }) => {
+    const value = Number(target.value | target.parentNode.value);
     const { comments } = this.state;
+    const newComments = comments.filter(comment => {
+      return comment.comment_id !== value;
+    });
     deleteComment(value).then(() => {
-      // this.setState({
-      //   comments: comments.filter(comment => comment.comment_id !== value)
-      // });
-      this.fetchComments();
+      this.setState({
+        comments: newComments
+      });
     });
   };
 

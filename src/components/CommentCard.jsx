@@ -44,6 +44,7 @@ const CommentCard = props => {
                     <span
                       className="glyphicon glyphicon-remove"
                       aria-hidden="true"
+                      value={comment_id}
                     />
                   </Button>
                 ) : null}
