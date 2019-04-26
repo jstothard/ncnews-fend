@@ -46,9 +46,14 @@ const ArticleCard = props => {
         <Container>
           <Row>
             <Col xs={{ span: false }}>
-              {username ? (
-                <Votes votes={votes} id={article_id} content="articles" />
-              ) : null}
+              {
+                <Votes
+                  votes={votes}
+                  id={article_id}
+                  content="articles"
+                  username={username}
+                />
+              }
             </Col>
             <Col xs={{ span: true }}>
               <Link className="text-dark" to={`/articles/${article_id}`}>

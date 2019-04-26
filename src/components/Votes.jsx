@@ -9,7 +9,7 @@ class Votes extends Component {
   };
   render() {
     const { voteChange } = this.state;
-    const { votes } = this.props;
+    const { votes, username } = this.props;
     return (
       <div>
         <ToggleButtonGroup
@@ -20,15 +20,19 @@ class Votes extends Component {
           onChange={this.updateVote}
           value={voteChange}
         >
-          <ToggleButton type="radio" value={1} variant="secondary">
-            <span className="glyphicon glyphicon-plus" aria-hidden="true" />
-          </ToggleButton>
+          {username ? (
+            <ToggleButton type="radio" value={1} variant="secondary">
+              <span className="glyphicon glyphicon-plus" aria-hidden="true" />
+            </ToggleButton>
+          ) : null}
           <ToggleButton type="radio" value={0} variant="secondary">
             {votes + voteChange}
           </ToggleButton>
-          <ToggleButton type="radio" value={-1} variant="secondary">
-            <span className="glyphicon glyphicon-minus" aria-hidden="true" />
-          </ToggleButton>
+          {username ? (
+            <ToggleButton type="radio" value={-1} variant="secondary">
+              <span className="glyphicon glyphicon-minus" aria-hidden="true" />
+            </ToggleButton>
+          ) : null}
         </ToggleButtonGroup>
       </div>
     );

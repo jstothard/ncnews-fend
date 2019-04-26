@@ -48,9 +48,14 @@ const CommentCard = props => {
                     />
                   </Button>
                 ) : null}
-                {username ? (
-                  <Votes votes={votes} id={comment_id} content="comments" />
-                ) : null}
+                {
+                  <Votes
+                    votes={votes}
+                    id={comment_id}
+                    content="comments"
+                    username={username}
+                  />
+                }
               </Col>
               <Col xs={{ span: true }}>{body}</Col>
             </Row>
