@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.min.css";
 import _ from "lodash";
 import React, { Component } from "react";
 import "./App.css";
@@ -11,6 +12,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import { isEmpty } from "./components/utils";
 import SortBar from "./components/SortBar";
 import PostComment from "./components/PostComment";
+import ErrorHandling from "./components/ErrorHandling";
 
 class App extends Component {
   state = {
@@ -53,6 +55,7 @@ class App extends Component {
                     user={user}
                     comment={comment}
                   />
+                  <ErrorHandling default />
                 </Router>
               </Col>
               <Col xs={6} md={6} lg={4}>
@@ -86,7 +89,6 @@ class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const topicsUpdated = !_.isEqual(prevState.topics, this.state.topics);
-    const sortUpdated = _.isEqual(prevState.sort, this.state.sort);
     if (topicsUpdated) this.fetchTopics();
   }
 

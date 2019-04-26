@@ -45,11 +45,19 @@ class Articles extends Component {
   }
 
   fetchArticles = (topic, sort) => {
-    getArticles(topic, sort).then(articles => {
-      return this.setState({
-        articles
-      });
-    });
+    const { navigate } = this.props;
+    getArticles(topic, sort)
+      .then(articles => {
+        if (articles.length === 0)
+          navigate("/404", {
+            replace: true
+          });
+        else
+          return this.setState({
+            articles
+          });
+      })
+      .catch(() => navigate("/404", { replace: true }));
   };
 }
 

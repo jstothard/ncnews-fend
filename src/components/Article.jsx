@@ -4,6 +4,7 @@ import ArticleCard from "./ArticleCard";
 import { getArticle } from "./api";
 import { Spinner } from "react-bootstrap";
 import Comments from "./Comments";
+import { navigate } from "@reach/router";
 
 class Article extends Component {
   state = {
@@ -39,9 +40,11 @@ class Article extends Component {
 
   fetchArticle = () => {
     const { article_id } = this.props;
-    getArticle(article_id).then(article => {
-      this.setState({ article, isLoading: false });
-    });
+    getArticle(article_id)
+      .then(article => {
+        this.setState({ article, isLoading: false });
+      })
+      .catch(() => navigate("/404"), { replace: true });
   };
 }
 

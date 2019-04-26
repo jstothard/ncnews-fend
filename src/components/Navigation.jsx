@@ -1,4 +1,3 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./css/Navigations.css";
 import React from "react";
 import { Navbar, NavDropdown, Nav } from "react-bootstrap";
