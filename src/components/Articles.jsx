@@ -62,14 +62,7 @@ class Articles extends Component {
       this.fetchArticles(topic, sort, page);
   }
 
-  changePage = ({
-    target
-    // target: {
-    //   attributes: {
-    //     value: { value }
-    //   }
-    // }
-  }) => {
+  changePage = ({ target }) => {
     const value = target.attributes.value
       ? target.attributes.value.value
       : target.parentNode.attributes.value.value;

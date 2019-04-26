@@ -23,11 +23,7 @@ class Article extends Component {
         ) : (
           <div>
             <ArticleCard article={article} user={user} />
-            <Comments
-              article_id={article.article_id}
-              user={user}
-              comment={comment}
-            />
+            <Comments article={article} user={user} comment={comment} />
           </div>
         )}
       </div>

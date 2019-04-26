@@ -21,10 +21,12 @@ export const getArticles = async (topic, sort, p) => {
   return { articles, total_count };
 };
 
-export const getComments = async article_id => {
+export const getComments = async (article_id, p) => {
   const {
     data: { comments }
-  } = await axios.get(`${BASE_URL}/articles/${article_id}/comments`);
+  } = await axios.get(`${BASE_URL}/articles/${article_id}/comments`, {
+    params: { p }
+  });
   return comments;
 };
 
