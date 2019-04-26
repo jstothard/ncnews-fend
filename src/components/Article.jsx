@@ -39,6 +39,7 @@ class Article extends Component {
   }
 
   fetchArticle = () => {
+    this.setState({ isLoading: true });
     const { article_id } = this.props;
     getArticle(article_id)
       .then(article => {

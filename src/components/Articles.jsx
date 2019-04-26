@@ -1,32 +1,39 @@
 import "./css/Articles.css";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { CardColumns } from "react-bootstrap";
+import { CardColumns, Spinner } from "react-bootstrap";
 import ArticleCard from "./ArticleCard";
 import { getArticles } from "./api";
 import _ from "lodash";
 
 class Articles extends Component {
   state = {
-    articles: []
+    articles: [],
+    isLoading: false
   };
   render() {
-    const { articles } = this.state;
+    const { articles, isLoading } = this.state;
     const { topic, user } = this.props;
     return (
       <div>
         {topic ? (
           <p className="display-4">{topic[0].toUpperCase() + topic.slice(1)}</p>
         ) : null}
-        <CardColumns>
-          {articles.map(article => (
-            <ArticleCard
-              article={article}
-              key={article.article_id}
-              user={user}
-            />
-          ))}
-        </CardColumns>
+        {isLoading ? (
+          <Spinner animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        ) : (
+          <CardColumns>
+            {articles.map(article => (
+              <ArticleCard
+                article={article}
+                key={article.article_id}
+                user={user}
+              />
+            ))}
+          </CardColumns>
+        )}
       </div>
     );
   }
@@ -45,6 +52,7 @@ class Articles extends Component {
   }
 
   fetchArticles = (topic, sort) => {
+    this.setState({ isLoading: true });
     const { navigate } = this.props;
     getArticles(topic, sort)
       .then(articles => {
@@ -54,7 +62,8 @@ class Articles extends Component {
           });
         else
           return this.setState({
-            articles
+            articles,
+            isLoading: false
           });
       })
       .catch(() => navigate("/404", { replace: true }));
