@@ -73,7 +73,6 @@ class Articles extends Component {
     const value = target.attributes.value
       ? target.attributes.value.value
       : target.parentNode.attributes.value.value;
-    console.log(value);
     this.setState({ page: Number(value) });
   };
 
