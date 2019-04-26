@@ -16,11 +16,12 @@ class App extends Component {
   state = {
     topics: [],
     user: {},
-    sort: { created_at: "desc" }
+    sort: { created_at: "desc" },
+    comment: {}
   };
 
   render() {
-    const { topics, user, sort } = this.state;
+    const { topics, user, sort, comment } = this.state;
     const loggedIn = !isEmpty(user);
     return (
       <div className="App">
@@ -47,12 +48,20 @@ class App extends Component {
                 <Router className="Main">
                   <Articles path="/" sort={sort} user={user} />
                   <Articles path="topics/:topic" sort={sort} user={user} />
-                  <Article path="articles/:article_id" user={user} />
+                  <Article
+                    path="articles/:article_id"
+                    user={user}
+                    comment={comment}
+                  />
                 </Router>
               </Col>
               <Col xs={6} md={6} lg={4}>
                 <Router>
-                  <PostComment path="articles/:article_id" user={user} />
+                  <PostComment
+                    path="articles/:article_id"
+                    user={user}
+                    updateComment={this.updateComment}
+                  />
                   <Side default />
                 </Router>
               </Col>
@@ -87,6 +96,10 @@ class App extends Component {
         topics
       });
     });
+  };
+
+  updateComment = comment => {
+    this.setState({ comment });
   };
 
   updateUser = user => {

@@ -72,11 +72,12 @@ class PostComment extends Component {
   }
 
   sendComment = ({ message }) => {
-    const { user, article_id } = this.props;
+    const { user, article_id, updateComment } = this.props;
     this.setState({ isPosting: true });
-    postComment(article_id, user, message).then(() =>
-      this.setState({ isPosting: false, isPosted: true })
-    );
+    postComment(article_id, user, message).then(comment => {
+      this.setState({ isPosting: false, isPosted: true });
+      updateComment(comment);
+    });
   };
 }
 

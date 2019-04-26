@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import CommentCard from "./CommentCard";
 import { CardColumns } from "react-bootstrap";
 import { getComments, deleteComment } from "./api";
+import { isObject } from "util";
+import _ from "lodash";
 
 class Comments extends Component {
   state = {
@@ -31,6 +33,11 @@ class Comments extends Component {
     this.fetchComments();
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    const newComment = !_.isEqual(prevProps.comment, this.props.comment);
+    if (newComment) this.pushComment(this.props.comment);
+  }
+
   removeComment = ({ target }) => {
     const value = Number(target.value | target.parentNode.value);
     const { comments } = this.state;
@@ -42,6 +49,11 @@ class Comments extends Component {
         comments: newComments
       });
     });
+  };
+
+  pushComment = comment => {
+    const newComments = [comment].concat(this.state.comments);
+    this.setState({ comments: newComments });
   };
 
   fetchComments = () => {
