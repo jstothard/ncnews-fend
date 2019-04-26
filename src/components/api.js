@@ -10,15 +10,15 @@ export const getTopics = async () => {
   return topics;
 };
 
-export const getArticles = async (topic, sort) => {
+export const getArticles = async (topic, sort, p) => {
   const sort_by = Object.keys(sort)[0];
   const order = sort[sort_by];
   const {
-    data: { articles }
+    data: { articles, total_count }
   } = await axios.get(`${BASE_URL}/articles/`, {
-    params: { topic, sort_by, order }
+    params: { topic, sort_by, order, p }
   });
-  return articles;
+  return { articles, total_count };
 };
 
 export const getComments = async article_id => {

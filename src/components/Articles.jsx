@@ -1,19 +1,23 @@
 import "./css/Articles.css";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { CardColumns, Spinner } from "react-bootstrap";
+import { CardColumns, Spinner, Pagination } from "react-bootstrap";
 import ArticleCard from "./ArticleCard";
 import { getArticles } from "./api";
 import _ from "lodash";
+import PageNumbers from "./PageNumbers";
 
 class Articles extends Component {
   state = {
     articles: [],
-    isLoading: false
+    isLoading: false,
+    page: 0,
+    total_count: 0
   };
   render() {
-    const { articles, isLoading } = this.state;
+    const { articles, isLoading, page, total_count } = this.state;
     const { topic, user } = this.props;
+    const totalPages = Math.ceil(total_count / 10);
     return (
       <div>
         {topic ? (
@@ -34,6 +38,11 @@ class Articles extends Component {
             ))}
           </CardColumns>
         )}
+        <PageNumbers
+          page={page}
+          totalPages={totalPages}
+          changePage={this.changePage}
+        />
       </div>
     );
   }
@@ -44,18 +53,35 @@ class Articles extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { topic, sort } = this.props;
-    const articlesUpdated = !_.isEqual(prevState.articles, this.state.articles);
+    const { page, articles } = this.state;
+    const articlesUpdated = !_.isEqual(prevState.articles, articles);
     const sortUpdated = prevProps.sort !== sort;
     const topicUpdated = prevProps.topic !== topic;
-    if (topicUpdated || articlesUpdated || sortUpdated)
-      this.fetchArticles(topic, sort);
+    const pageUpdated = prevState.page !== page;
+    if (topicUpdated || articlesUpdated || sortUpdated || pageUpdated)
+      this.fetchArticles(topic, sort, page);
   }
 
-  fetchArticles = (topic, sort) => {
+  changePage = ({
+    target
+    // target: {
+    //   attributes: {
+    //     value: { value }
+    //   }
+    // }
+  }) => {
+    const value = target.attributes.value
+      ? target.attributes.value.value
+      : target.parentNode.attributes.value.value;
+    console.log(value);
+    this.setState({ page: Number(value) });
+  };
+
+  fetchArticles = (topic, sort, page) => {
     this.setState({ isLoading: true });
     const { navigate } = this.props;
-    getArticles(topic, sort)
-      .then(articles => {
+    getArticles(topic, sort, page)
+      .then(({ articles, total_count }) => {
         if (articles.length === 0)
           navigate("/404", {
             replace: true
@@ -63,6 +89,7 @@ class Articles extends Component {
         else
           return this.setState({
             articles,
+            total_count,
             isLoading: false
           });
       })
