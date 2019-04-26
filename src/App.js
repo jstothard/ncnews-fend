@@ -58,7 +58,7 @@ class App extends Component {
                   <ErrorHandling default />
                 </Router>
               </Col>
-              <Col xs={6} md={6} lg={4}>
+              <Col xs={12} md={12} lg={4}>
                 <Router>
                   <PostComment
                     path="articles/:article_id"
