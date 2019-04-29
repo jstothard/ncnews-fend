@@ -88,11 +88,6 @@ class App extends Component {
     this.getLocalStorage();
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    const topicsUpdated = !_.isEqual(prevState.topics, this.state.topics);
-    if (topicsUpdated) this.fetchTopics();
-  }
-
   fetchTopics = () => {
     getTopics().then(topics => {
       this.setState({
