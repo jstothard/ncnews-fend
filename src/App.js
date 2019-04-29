@@ -67,6 +67,8 @@ class App extends Component {
                     updateComment={this.updateComment}
                   />
                   <Stats path="/" />
+                  <Stats path="/topics/:topic" />
+                  <Stats path="/users/:username" />
                   <Side default />
                 </Router>
               </Col>
