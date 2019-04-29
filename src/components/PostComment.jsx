@@ -27,7 +27,12 @@ class PostComment extends Component {
           <Card.Body>
             {user.username ? (
               isPosted ? (
-                <p>Thank you, your comment has been posted</p>
+                <div>
+                  <p>Thank you, your comment has been posted</p>
+                  <Button onClick={this.newComment}>
+                    Post another comment
+                  </Button>
+                </div>
               ) : (
                 <Formik validationSchema={schema} onSubmit={this.sendComment}>
                   {({
@@ -68,13 +73,19 @@ class PostComment extends Component {
     );
   }
 
-  sendComment = ({ message }) => {
+  sendComment = ({ Comment }, { props, resetForm }) => {
     const { user, article_id, updateComment } = this.props;
     this.setState({ isPosting: true });
-    postComment(article_id, user, message).then(comment => {
+    postComment(article_id, user, Comment).then(comment => {
       this.setState({ isPosting: false, isPosted: true });
+      console.log(comment);
       updateComment(comment);
+      // resetForm();
     });
+  };
+
+  newComment = () => {
+    this.setState({ isPosted: false });
   };
 }
 
