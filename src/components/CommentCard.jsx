@@ -36,26 +36,14 @@ const CommentCard = props => {
           <Container>
             <Row>
               <Col xs={{ span: false }}>
-                {username === author ? (
-                  <Button
-                    variant="danger"
-                    size="sm"
-                    onClick={removeComment}
-                    value={comment_id}
-                  >
-                    <span
-                      className="glyphicon glyphicon-remove"
-                      aria-hidden="true"
-                      value={comment_id}
-                    />
-                  </Button>
-                ) : null}
                 {
                   <Votes
                     votes={votes}
                     id={comment_id}
                     content="comments"
                     username={username}
+                    removeComment={removeComment}
+                    author={author}
                   />
                 }
               </Col>

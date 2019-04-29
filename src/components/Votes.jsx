@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ToggleButtonGroup, ToggleButton } from "react-bootstrap";
+import { ToggleButtonGroup, ToggleButton, Button } from "react-bootstrap";
 import { vote } from "../api";
 import "./css/Votes.css";
 
@@ -9,7 +9,7 @@ class Votes extends Component {
   };
   render() {
     const { voteChange } = this.state;
-    const { votes, username } = this.props;
+    const { votes, username, author, removeComment, comment_id } = this.props;
     return (
       <div>
         <ToggleButtonGroup
@@ -20,6 +20,20 @@ class Votes extends Component {
           onChange={this.updateVote}
           value={voteChange}
         >
+          <Button
+            variant="danger"
+            size="sm"
+            onClick={removeComment}
+            value={comment_id}
+            visible={username === author && username ? "true" : "false"}
+          >
+            <span
+              className="glyphicon glyphicon-remove"
+              aria-hidden="true"
+              value={comment_id}
+            />
+          </Button>
+
           <ToggleButton
             type="radio"
             value={1}
