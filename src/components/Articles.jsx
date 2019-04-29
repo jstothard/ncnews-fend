@@ -3,7 +3,6 @@ import React, { Component } from "react";
 import { CardColumns, Spinner } from "react-bootstrap";
 import ArticleCard from "./ArticleCard";
 import { getArticles } from "./api";
-import _ from "lodash";
 import PageNumbers from "./PageNumbers";
 
 class Articles extends Component {
@@ -52,12 +51,11 @@ class Articles extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { topic, sort } = this.props;
-    const { page, articles } = this.state;
-    const articlesUpdated = !_.isEqual(prevState.articles, articles);
+    const { page } = this.state;
     const sortUpdated = prevProps.sort !== sort;
     const topicUpdated = prevProps.topic !== topic;
     const pageUpdated = prevState.page !== page;
-    if (topicUpdated || articlesUpdated || sortUpdated || pageUpdated)
+    if (topicUpdated || sortUpdated || pageUpdated)
       this.fetchArticles(topic, sort, page);
   }
 

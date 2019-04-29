@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import CommentCard from "./CommentCard";
 import { CardColumns } from "react-bootstrap";
 import { getComments, deleteComment } from "./api";
-import _ from "lodash";
 import PageNumbers from "./PageNumbers";
 
 class Comments extends Component {
@@ -40,7 +39,7 @@ class Comments extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const newComment = !_.isEqual(prevProps.comment, this.props.comment);
+    const newComment = prevProps.comment !== this.props.comment;
     if (newComment) this.pushComment(this.props.comment);
   }
 
