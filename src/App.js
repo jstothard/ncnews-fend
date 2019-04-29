@@ -85,6 +85,7 @@ class App extends Component {
 
   componentDidMount() {
     this.fetchTopics();
+    this.getLocalStorage();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -105,7 +106,16 @@ class App extends Component {
   };
 
   updateUser = user => {
+    if (user.username) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else localStorage.clear();
     this.setState({ user });
+  };
+
+  getLocalStorage = () => {
+    if (localStorage.hasOwnProperty("user")) {
+      this.setState({ user: JSON.parse(localStorage.getItem("user")) });
+    }
   };
 }
 
