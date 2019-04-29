@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 import { vote } from "./api";
+import "./css/Votes.css";
 
 class Votes extends Component {
   state = {
@@ -20,19 +21,25 @@ class Votes extends Component {
           onChange={this.updateVote}
           value={voteChange}
         >
-          {username ? (
-            <ToggleButton type="radio" value={1} variant="secondary">
-              <span className="glyphicon glyphicon-plus" aria-hidden="true" />
-            </ToggleButton>
-          ) : null}
+          <ToggleButton
+            type="radio"
+            value={1}
+            variant="secondary"
+            visible={username ? "true" : "false"}
+          >
+            <span className="glyphicon glyphicon-plus" aria-hidden="true" />
+          </ToggleButton>
           <ToggleButton type="radio" value={0} variant="secondary">
             {votes + voteChange}
           </ToggleButton>
-          {username ? (
-            <ToggleButton type="radio" value={-1} variant="secondary">
-              <span className="glyphicon glyphicon-minus" aria-hidden="true" />
-            </ToggleButton>
-          ) : null}
+          <ToggleButton
+            type="radio"
+            value={-1}
+            variant="secondary"
+            visible={username ? "true" : "false"}
+          >
+            <span className="glyphicon glyphicon-minus" aria-hidden="true" />
+          </ToggleButton>
         </ToggleButtonGroup>
       </div>
     );
