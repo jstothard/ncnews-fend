@@ -1,9 +1,9 @@
 import React from "react";
-import { daysBetween } from "./utils";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import { Link } from "@reach/router";
 import PropTypes from "prop-types";
 import Votes from "./Votes";
+import moment from "moment";
 
 const ArticleCard = props => {
   const {
@@ -19,7 +19,9 @@ const ArticleCard = props => {
     },
     user
   } = props;
-  const days = daysBetween(new Date(), new Date(created_at));
+  const days = Math.abs(moment().diff(created_at) < 1000 * 60 * 60 * 24)
+    ? "Today"
+    : moment(created_at).fromNow();
   const username = user ? user.username : null;
   return (
     <Card>

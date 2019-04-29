@@ -1,8 +1,8 @@
 import React from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
-import { daysBetween } from "./utils";
 import PropTypes from "prop-types";
 import Votes from "./Votes";
+import moment from "moment";
 
 const CommentCard = props => {
   const {
@@ -11,7 +11,9 @@ const CommentCard = props => {
     removeComment
   } = props;
   const username = user ? user.username : null;
-  const days = daysBetween(new Date(), new Date(created_at));
+  const days = Math.abs(moment().diff(created_at) < 1000 * 60 * 60 * 24)
+    ? "Today"
+    : moment(created_at).fromNow();
 
   return (
     <div>
