@@ -1,4 +1,4 @@
-import { Formik } from "formik";
+import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
@@ -14,11 +14,11 @@ class PostComment extends Component {
     const { user } = this.props;
     const { isPosted, isPosting } = this.state;
     const schema = yup.object({
-      message: yup
+      Comment: yup
         .string()
         .max(40000, "Maximum of 40,000 characters")
         .min(15, "Please enter a longer message")
-        .required()
+        .required("Please enter a comment")
     });
     return (
       <div>
@@ -36,24 +36,21 @@ class PostComment extends Component {
                     handleBlur,
                     values,
                     touched,
-                    isValid,
                     errors
                   }) => (
                     <Form noValidate onSubmit={handleSubmit}>
-                      <Form.Group controlId="message">
+                      <Form.Group controlId="Comment">
                         <Form.Label>Comment</Form.Label>
                         <Form.Control
                           as="textarea"
+                          name="Comment"
+                          value={values.Comment}
                           rows="9"
-                          required
-                          name="message"
-                          value={values.message}
                           onChange={handleChange}
-                          isValid={touched.message && !errors.message}
+                          onBlur={handleBlur}
+                          isValid={touched.Comment && !errors.Comment}
                         />
-                        <Form.Control.Feedback type="invalid">
-                          {errors.message}
-                        </Form.Control.Feedback>
+                        <ErrorMessage name="Comment" />
                       </Form.Group>
                       <Button type="submit" disabled={isPosting}>
                         Submit
