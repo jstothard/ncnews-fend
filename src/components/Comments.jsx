@@ -40,7 +40,9 @@ class Comments extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const newComment = prevProps.comment !== this.props.comment;
+    const changePage = prevState.page !== this.state.page;
     if (newComment) this.pushComment(this.props.comment);
+    if (changePage) this.fetchComments();
   }
 
   changePage = ({ target }) => {
@@ -70,8 +72,9 @@ class Comments extends Component {
 
   fetchComments = () => {
     const {
-      article: { article_id, page }
+      article: { article_id }
     } = this.props;
+    const { page } = this.state;
     getComments(article_id, page).then(comments => {
       this.setState({ comments, isLoading: false });
     });
