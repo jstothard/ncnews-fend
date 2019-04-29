@@ -1,8 +1,8 @@
 import "./css/Articles.css";
 import React, { Component } from "react";
-import { CardColumns, Spinner } from "react-bootstrap";
+import { CardColumns, Spinner, Image } from "react-bootstrap";
 import ArticleCard from "./ArticleCard";
-import { getArticles } from "../api";
+import { getArticles, getUser } from "../api";
 import PageNumbers from "./PageNumbers";
 
 class Articles extends Component {
@@ -10,18 +10,29 @@ class Articles extends Component {
     articles: [],
     isLoading: false,
     page: 0,
-    total_count: 0
+    total_count: 0,
+    searchedUser: {}
   };
   render() {
-    const { articles, isLoading, page, total_count } = this.state;
+    const { articles, isLoading, page, total_count, searchedUser } = this.state;
     const { topic, user, username } = this.props;
     const totalPages = Math.ceil(total_count / 10);
     return (
       <div>
         {topic ? (
-          <p className="display-4">{topic[0].toUpperCase() + topic.slice(1)}</p>
+          <p className="display-4-inline">
+            {topic[0].toUpperCase() + topic.slice(1)}
+          </p>
         ) : username ? (
-          <p className="display-4">{username}</p>
+          <div>
+            <Image
+              src={searchedUser.avatar_url}
+              roundedCircle
+              fluid={true}
+              style={{ float: "left" }}
+            />
+            <p className="display-4">{searchedUser.name}</p>
+          </div>
         ) : null}
         {isLoading ? (
           <Spinner animation="border" role="status">
@@ -49,6 +60,7 @@ class Articles extends Component {
   componentDidMount() {
     const { topic, sort, username } = this.props;
     this.fetchArticles(topic, sort, 0, username);
+    this.fetchUser(username);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -60,6 +72,7 @@ class Articles extends Component {
     const userUpdated = prevProps.username !== username;
     if (topicUpdated || sortUpdated || pageUpdated || userUpdated)
       this.fetchArticles(topic, sort, page, username);
+    if (userUpdated) this.fetchUser(username);
   }
 
   changePage = ({ target }) => {
@@ -86,6 +99,12 @@ class Articles extends Component {
           });
       })
       .catch(() => navigate("/404", { replace: true }));
+  };
+
+  fetchUser = username => {
+    getUser(username).then(searchedUser => {
+      this.setState({ searchedUser });
+    });
   };
 }
 

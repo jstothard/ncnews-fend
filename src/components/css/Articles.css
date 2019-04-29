@@ -1,3 +1,8 @@
 .card-columns {
   column-count: 1;
 }
+
+.img-fluid {
+  width: 3em;
+  height: 3em;
+}
