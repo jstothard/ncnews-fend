@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Container, Row, Col, Button } from "react-bootstrap";
+import { Card, Container, Row, Col } from "react-bootstrap";
 import Votes from "./Votes";
 import moment from "moment";
 import { Link } from "@reach/router";

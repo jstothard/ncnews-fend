@@ -12,6 +12,7 @@ import { isEmpty } from "./utils";
 import SortBar from "./components/SortBar";
 import PostComment from "./components/PostComment";
 import ErrorHandling from "./components/ErrorHandling";
+import Stats from "./components/Stats";
 
 class App extends Component {
   state = {
@@ -65,6 +66,7 @@ class App extends Component {
                     user={user}
                     updateComment={this.updateComment}
                   />
+                  <Stats path="/" />
                   <Side default />
                 </Router>
               </Col>
