@@ -31,6 +31,9 @@ const Navigation = props => {
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
             <NavDropdown title="Topics" id="collasible-nav-dropdown">
+              <NavDropdown.Item key="All" onClick={() => navigate(`/`)}>
+                All
+              </NavDropdown.Item>
               {topics.map(({ slug }) => (
                 <NavDropdown.Item
                   key={slug}
