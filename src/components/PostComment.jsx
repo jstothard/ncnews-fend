@@ -2,7 +2,7 @@ import { Formik, ErrorMessage } from "formik";
 import * as yup from "yup";
 import React, { Component } from "react";
 import { Card, Form, Button } from "react-bootstrap";
-import { postComment } from "./api";
+import { postComment } from "../api";
 
 class PostComment extends Component {
   state = {

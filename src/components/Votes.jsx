@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { ToggleButtonGroup, ToggleButton } from "react-bootstrap";
-import { vote } from "./api";
+import { vote } from "../api";
 import "./css/Votes.css";
 
 class Votes extends Component {

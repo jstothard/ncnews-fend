@@ -1,6 +1,6 @@
 import React from "react";
 import { Pagination } from "react-bootstrap";
-import { pageArray } from "./utils";
+import { pageArray } from "../utils";
 
 const PageNumbers = props => {
   const { totalPages, page, changePage } = props;

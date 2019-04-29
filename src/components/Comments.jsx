@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import CommentCard from "./CommentCard";
 import { CardColumns } from "react-bootstrap";
-import { getComments, deleteComment } from "./api";
+import { getComments, deleteComment } from "../api";
 import PageNumbers from "./PageNumbers";
 
 class Comments extends Component {

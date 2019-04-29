@@ -1,7 +1,7 @@
 import "./css/Auth.css";
 import React, { Component } from "react";
 import { Form, Button, FormControl } from "react-bootstrap";
-import { getUser } from "./api";
+import { getUser } from "../api";
 
 class Auth extends Component {
   state = {

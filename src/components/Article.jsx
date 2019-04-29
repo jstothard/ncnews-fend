@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ArticleCard from "./ArticleCard";
-import { getArticle } from "./api";
+import { getArticle } from "../api";
 import { Spinner } from "react-bootstrap";
 import Comments from "./Comments";
 import { navigate } from "@reach/router";

@@ -2,7 +2,7 @@ import "./css/Articles.css";
 import React, { Component } from "react";
 import { CardColumns, Spinner } from "react-bootstrap";
 import ArticleCard from "./ArticleCard";
-import { getArticles } from "./api";
+import { getArticles } from "../api";
 import PageNumbers from "./PageNumbers";
 
 class Articles extends Component {
