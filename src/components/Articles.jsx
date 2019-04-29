@@ -14,12 +14,14 @@ class Articles extends Component {
   };
   render() {
     const { articles, isLoading, page, total_count } = this.state;
-    const { topic, user } = this.props;
+    const { topic, user, username } = this.props;
     const totalPages = Math.ceil(total_count / 10);
     return (
       <div>
         {topic ? (
           <p className="display-4">{topic[0].toUpperCase() + topic.slice(1)}</p>
+        ) : username ? (
+          <p className="display-4">{username}</p>
         ) : null}
         {isLoading ? (
           <Spinner animation="border" role="status">
@@ -45,18 +47,19 @@ class Articles extends Component {
     );
   }
   componentDidMount() {
-    const { topic, sort } = this.props;
-    this.fetchArticles(topic, sort);
+    const { topic, sort, username } = this.props;
+    this.fetchArticles(topic, sort, 0, username);
   }
 
   componentDidUpdate(prevProps, prevState) {
-    const { topic, sort } = this.props;
+    const { topic, sort, username } = this.props;
     const { page } = this.state;
     const sortUpdated = prevProps.sort !== sort;
     const topicUpdated = prevProps.topic !== topic;
     const pageUpdated = prevState.page !== page;
-    if (topicUpdated || sortUpdated || pageUpdated)
-      this.fetchArticles(topic, sort, page);
+    const userUpdated = prevProps.username !== username;
+    if (topicUpdated || sortUpdated || pageUpdated || userUpdated)
+      this.fetchArticles(topic, sort, page, username);
   }
 
   changePage = ({ target }) => {
@@ -66,10 +69,10 @@ class Articles extends Component {
     this.setState({ page: Number(value) });
   };
 
-  fetchArticles = (topic, sort, page) => {
+  fetchArticles = (topic, sort, page, username) => {
     this.setState({ isLoading: true });
     const { navigate } = this.props;
-    getArticles(topic, sort, page)
+    getArticles(topic, sort, page, username)
       .then(({ articles, total_count }) => {
         if (articles.length === 0)
           navigate("/404", {

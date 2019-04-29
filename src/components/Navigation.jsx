@@ -4,6 +4,7 @@ import { Navbar, NavDropdown, Nav } from "react-bootstrap";
 import { navigate } from "@reach/router";
 import Auth from "./Auth";
 import LogOut from "./LogOut";
+import UsernameSearch from "./UsernameSearch";
 
 const Navigation = props => {
   const {
@@ -42,6 +43,7 @@ const Navigation = props => {
                 </NavDropdown.Item>
               ))}
             </NavDropdown>
+            <UsernameSearch />
           </Nav>
           {loggedIn ? (
             <LogOut username={username} updateUser={updateUser} />

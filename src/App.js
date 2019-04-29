@@ -49,6 +49,7 @@ class App extends Component {
                 <Router className="Main">
                   <Articles path="/" sort={sort} user={user} />
                   <Articles path="topics/:topic" sort={sort} user={user} />
+                  <Articles path="users/:username" sort={sort} user={user} />
                   <Article
                     path="articles/:article_id"
                     user={user}
