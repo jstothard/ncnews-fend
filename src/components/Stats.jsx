@@ -1,47 +1,32 @@
 import React, { Component } from "react";
-import { Card, Table } from "react-bootstrap";
-import { Link } from "@reach/router";
+import { Card, Tabs, Tab } from "react-bootstrap";
 import { getArticles } from "../api";
+import TopTable from "./TopTable";
 
 class Stats extends Component {
   state = {
-    articles: []
+    articles: [],
+    key: "votes"
   };
 
   render() {
-    const { articles } = this.state;
+    const { articles, key } = this.state;
     return (
       <Card>
         <Card.Header>Trending Articles</Card.Header>
         <Card.Body>
-          <Table className={"table table-hover"}>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Article</th>
-                <th>Author</th>
-                <th>Votes</th>
-              </tr>
-            </thead>
-            <tbody>
-              {articles.map(({ title, author, article_id, votes }, i) => (
-                <tr key={article_id}>
-                  <td>{i + 1}</td>
-                  <td>
-                    <Link className="text-dark" to={`/articles/${article_id}`}>
-                      {title}
-                    </Link>
-                  </td>
-                  <td>
-                    <Link className="text-dark" to={`/users/${author}`}>
-                      {author}
-                    </Link>
-                  </td>
-                  <td>{votes}</td>
-                </tr>
-              ))}
-            </tbody>
-          </Table>
+          <Tabs
+            id="featured-tabs"
+            activeKey={key}
+            onSelect={key => this.setState({ key })}
+          >
+            <Tab eventKey="votes" title="Votes">
+              <TopTable articles={articles} sortCol={key} />
+            </Tab>
+            <Tab eventKey="comment_count" title="Comments">
+              <TopTable articles={articles} sortCol={key} />
+            </Tab>
+          </Tabs>
         </Card.Body>
       </Card>
     );
@@ -54,12 +39,14 @@ class Stats extends Component {
   componentDidUpdate(prevProps, prevState) {
     const topicUpdate = prevProps.topic !== this.props.topic;
     const userUpdate = prevProps.username !== this.props.username;
-    if (topicUpdate || userUpdate) this.fetchArticles();
+    const keyUpdate = prevState.key !== this.state.key;
+    if (topicUpdate || userUpdate || keyUpdate) this.fetchArticles();
   }
 
   fetchArticles = () => {
     const { topic, username } = this.props;
-    getArticles(topic, { votes: "desc" }, 0, username).then(({ articles }) => {
+    const { key } = this.state;
+    getArticles(topic, { [key]: "desc" }, 0, username).then(({ articles }) => {
       this.setState({ articles });
     });
   };
