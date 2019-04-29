@@ -37,7 +37,7 @@ const ArticleCard = props => {
             </Col>
             <Col>
               <Card.Text className="font-weight-light text-right">
-                {" Posted by " + author}
+                {" Posted by "} <Link to={`/users/${author}`}>{author}</Link>
               </Card.Text>
             </Col>
           </Row>

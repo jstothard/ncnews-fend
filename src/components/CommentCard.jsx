@@ -2,6 +2,7 @@ import React from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
 import Votes from "./Votes";
 import moment from "moment";
+import { Link } from "@reach/router";
 
 const CommentCard = props => {
   const {
@@ -21,7 +22,7 @@ const CommentCard = props => {
           <Container>
             <Row>
               <Col>
-                <Card.Text>{author}</Card.Text>
+                <Link to={`/users/${author}`}>{author}</Link>
               </Col>
               <Col>
                 <Card.Text className="font-weight-light text-right">
