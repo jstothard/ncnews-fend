@@ -11,7 +11,7 @@ const Navigation = props => {
     topics,
     updateUser,
     loggedIn,
-    user: { username }
+    user: { username, avatar_url }
   } = props;
   return (
     <div className="Navbar">
@@ -46,7 +46,11 @@ const Navigation = props => {
             <UsernameSearch />
           </Nav>
           {loggedIn ? (
-            <LogOut username={username} updateUser={updateUser} />
+            <LogOut
+              username={username}
+              updateUser={updateUser}
+              avatar={avatar_url}
+            />
           ) : (
             <Auth updateUser={updateUser} />
           )}

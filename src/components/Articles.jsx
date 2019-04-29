@@ -20,15 +20,14 @@ class Articles extends Component {
     return (
       <div>
         {topic ? (
-          <p className="display-4-inline">
-            {topic[0].toUpperCase() + topic.slice(1)}
-          </p>
+          <p className="display-4">{topic[0].toUpperCase() + topic.slice(1)}</p>
         ) : username ? (
           <div>
             <Image
               src={searchedUser.avatar_url}
               roundedCircle
               fluid={true}
+              className={"img-fluid rounded-circle img-article"}
               style={{ float: "left" }}
             />
             <p className="display-4">{searchedUser.name}</p>
