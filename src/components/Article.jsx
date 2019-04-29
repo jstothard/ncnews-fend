@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import ArticleCard from "./ArticleCard";
 import { getArticle } from "./api";
 import { Spinner } from "react-bootstrap";
@@ -44,7 +43,5 @@ class Article extends Component {
       .catch(() => navigate("/404"), { replace: true });
   };
 }
-
-Article.propTypes = {};
 
 export default Article;

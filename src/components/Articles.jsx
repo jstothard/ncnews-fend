@@ -1,7 +1,6 @@
 import "./css/Articles.css";
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { CardColumns, Spinner, Pagination } from "react-bootstrap";
+import { CardColumns, Spinner } from "react-bootstrap";
 import ArticleCard from "./ArticleCard";
 import { getArticles } from "./api";
 import _ from "lodash";
@@ -88,7 +87,5 @@ class Articles extends Component {
       .catch(() => navigate("/404", { replace: true }));
   };
 }
-
-Articles.propTypes = {};
 
 export default Articles;

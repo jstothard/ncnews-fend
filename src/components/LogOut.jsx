@@ -1,6 +1,5 @@
 import React from "react";
 import { Navbar, Button } from "react-bootstrap";
-import PropTypes from "prop-types";
 
 const LogOut = props => {
   const { username, updateUser } = props;
@@ -13,7 +12,5 @@ const LogOut = props => {
     </div>
   );
 };
-
-LogOut.propTypes = {};
 
 export default LogOut;

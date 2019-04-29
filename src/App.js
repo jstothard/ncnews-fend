@@ -1,5 +1,4 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import _ from "lodash";
 import React, { Component } from "react";
 import "./App.css";
 import Navigation from "./components/Navigation.jsx";

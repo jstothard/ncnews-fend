@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import { Link } from "@reach/router";
-import PropTypes from "prop-types";
 import Votes from "./Votes";
 import moment from "moment";
 
@@ -81,7 +80,5 @@ const ArticleCard = props => {
     </Card>
   );
 };
-
-ArticleCard.propTypes = {};
 
 export default ArticleCard;

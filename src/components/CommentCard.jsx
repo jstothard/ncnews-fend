@@ -1,6 +1,5 @@
 import React from "react";
 import { Card, Container, Row, Col, Button } from "react-bootstrap";
-import PropTypes from "prop-types";
 import Votes from "./Votes";
 import moment from "moment";
 
@@ -67,7 +66,5 @@ const CommentCard = props => {
     </div>
   );
 };
-
-CommentCard.propTypes = {};
 
 export default CommentCard;

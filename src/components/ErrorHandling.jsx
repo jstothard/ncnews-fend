@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 const ErrorHandling = props => {
   return (
@@ -11,7 +10,5 @@ const ErrorHandling = props => {
     </div>
   );
 };
-
-ErrorHandling.propTypes = {};
 
 export default ErrorHandling;

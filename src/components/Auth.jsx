@@ -2,7 +2,6 @@ import "./css/Auth.css";
 import React, { Component } from "react";
 import { Form, Button, FormControl } from "react-bootstrap";
 import { getUser } from "./api";
-import PropTypes from "prop-types";
 
 class Auth extends Component {
   state = {
@@ -60,7 +59,5 @@ class Auth extends Component {
       );
   };
 }
-
-Auth.propTypes = {};
 
 export default Auth;

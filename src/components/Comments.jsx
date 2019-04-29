@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import CommentCard from "./CommentCard";
 import { CardColumns } from "react-bootstrap";
 import { getComments, deleteComment } from "./api";
-import { isObject } from "util";
 import _ from "lodash";
 import PageNumbers from "./PageNumbers";
 
@@ -80,7 +78,5 @@ class Comments extends Component {
     });
   };
 }
-
-Comments.propTypes = {};
 
 export default Comments;

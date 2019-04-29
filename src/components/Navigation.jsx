@@ -2,7 +2,6 @@ import "./css/Navigations.css";
 import React from "react";
 import { Navbar, NavDropdown, Nav } from "react-bootstrap";
 import { navigate } from "@reach/router";
-import PropTypes from "prop-types";
 import Auth from "./Auth";
 import LogOut from "./LogOut";
 
@@ -54,7 +53,5 @@ const Navigation = props => {
     </div>
   );
 };
-
-Navigation.propTypes = {};
 
 export default Navigation;

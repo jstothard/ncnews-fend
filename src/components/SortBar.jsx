@@ -1,6 +1,5 @@
 import "./css/SortBar.css";
-import React, { Component } from "react";
-import PropTypes from "prop-types";
+import React from "react";
 import { Navbar } from "react-bootstrap";
 import SortButton from "./SortButton";
 
@@ -23,7 +22,5 @@ const SortBar = props => {
     </Navbar>
   );
 };
-
-SortBar.propTypes = {};
 
 export default SortBar;
